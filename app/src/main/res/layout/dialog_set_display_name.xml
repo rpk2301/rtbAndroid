@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/backgroundcloth"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please Create A Display Name For Ride The Bus"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/yellow"
+        android:gravity="center"
+        android:padding="8dp"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="3"/>
+
+    <TextView
+        android:id="@+id/tv_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Note: This Name Will Be Displayed On The Ride The Bus Leaderboard And Can Be Changed Later"
+        android:textSize="18sp"
+        android:textColor="@color/yellow"
+        android:gravity="center"
+        android:padding="8dp"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="3"/>
+
+    <EditText
+        android:id="@+id/et_player_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:maxLength="12"
+        android:inputType="text"
+        android:padding="8dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/btn_create_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Display Name"
+        android:padding="8dp"
+        android:textColor="@android:color/white"
+        android:background="@android:color/holo_green_dark"
+        android:layout_marginTop="16dp"
+        android:enabled="false"/>
+
+</LinearLayout>
