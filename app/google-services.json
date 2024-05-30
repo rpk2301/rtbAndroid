@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "817758321889",
+    "firebase_url": "https://ride-the-bus-ea540-default-rtdb.firebaseio.com",
+    "project_id": "ride-the-bus-ea540",
+    "storage_bucket": "ride-the-bus-ea540.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817758321889:android:c8171dfcaf58b253f50ba0",
+        "android_client_info": {
+          "package_name": "com.example.ridethebus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb03wt9Fz-aOuB9II5tNHYBhw9dxC7UQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
