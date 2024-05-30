@@ -9,4 +9,8 @@
     <color name="yellow">#DFDC25</color>
     <color name="white">#FFFFFFFF</color>
     <color name="buttonColor">#FF6200EE</color>
+    <color name="red">#FF0000</color>
+    <color name="orange_dark">#FFA500</color>
+    <color name="green_dark">#006400</color>
+    <color name="darker_gray">#A9A9A9</color>
 </resources>

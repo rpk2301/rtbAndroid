@@ -1,6 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/backgroundcloth"
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/cardStack1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/three_of_clubs" />
+
+    <ImageView
+        android:id="@+id/cardStack2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/three_of_clubs" />
+
+    <ImageView
+        android:id="@+id/cardStack3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/three_of_clubs" />
+
+    <ImageView
+        android:id="@+id/cardStack4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/three_of_clubs" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/btnHigher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Higher"
+            android:background="@drawable/btn_higher"
+            android:textColor="@android:color/white"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnSame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Same"
+            android:background="@drawable/btn_same"
+            android:textColor="@android:color/white"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnLower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lower"
+            android:background="@drawable/btn_lower"
+            android:textColor="@android:color/white"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+    </LinearLayout>
+

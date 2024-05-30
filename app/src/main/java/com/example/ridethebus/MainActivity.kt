@@ -3,6 +3,7 @@ package com.example.ridethebus
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.FirebaseApp
@@ -12,15 +13,17 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),  SetDisplayNameDialogFragment.SetDisplayNameListener,  ChangeNameDialogFragment.ChangeNameListener {
 
     private lateinit var rideCounter: TextView
     private lateinit var databaseReference: DatabaseReference
     private lateinit var leaderboardButton: Button
     private lateinit var recentRidesButton: Button
-
+    private lateinit var playButton: Button
+    private lateinit var profileIcon: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        UserDataFileManager.initialize(this)
         setContentView(R.layout.activity_main)
 
         // Initialize Firebase
@@ -30,7 +33,8 @@ class MainActivity : AppCompatActivity() {
         rideCounter = findViewById(R.id.rideCounter)
         leaderboardButton = findViewById(R.id.leaderboardButton)
         recentRidesButton = findViewById(R.id.recentRidesButton)
-
+        playButton = findViewById(R.id.playButton)
+        profileIcon = findViewById(R.id.profileIcon)
         // Initialize Firebase Database
         databaseReference = FirebaseDatabase.getInstance().reference
 
@@ -48,6 +52,43 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        playButton.setOnClickListener {
+            if(UserDataFileManager.displayName == "") {
+                showSetDisplayNameDialog()
+            }
+            else{
+                val intent = Intent(this, GameActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        profileIcon.setOnClickListener {
+                showChangeNameDialog()
+
+        }
+
+    }
+
+    private fun showSetDisplayNameDialog() {
+        val dialog = SetDisplayNameDialogFragment()
+        dialog.setListener(this)
+        dialog.show(supportFragmentManager, "SetDisplayNameDialogFragment")
+    }
+
+    private fun showChangeNameDialog() {
+        val dialog = ChangeNameDialogFragment()
+        dialog.setListener(this)
+        dialog.show(supportFragmentManager, "ChangeNameDialogFragment")
+    }
+    override fun onDisplayNameSet(displayName: String) {
+        // Handle the display name set by the user
+        // For example, save it to the database or update the UI
+        // UserDataFileManager.changeDisplayName(newName: displayName)
+    }
+
+    override fun onNameChanged(newName: String) {
+        // Handle the name change
+        // For example, update the UI or save the new name
     }
 
     private fun fetchTotalScore() {

@@ -1,6 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/backgroundcloth"
+    android:gravity="center">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv_current_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Leaderboard Display Name: None Set"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/yellow"
+        android:gravity="center"
+        android:padding="8dp"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="3"/>
+
+    <TextView
+        android:id="@+id/tv_total_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Cards Ridden: 0"
+        android:textSize="18sp"
+        android:textColor="@color/yellow"
+        android:gravity="center"
+        android:padding="8dp"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="3"/>
+
+    <EditText
+        android:id="@+id/et_player_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Change Name"
+        android:maxLength="12"
+        android:inputType="text"
+        android:padding="8dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/btn_change_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Name"
+        android:padding="8dp"
+        android:textColor="@android:color/white"
+        android:background="@android:color/holo_green_dark"
+        android:layout_marginTop="16dp"
+        android:enabled="false"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/tv_hard_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enable Hard Mode"
+            android:textSize="18sp"
+            android:textColor="@color/yellow"
+            android:padding="8dp"
+            android:shadowColor="#000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="3"/>
+
+        <ImageView
+            android:id="@+id/iv_hard_mode_toggle"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:tint="@color/red"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_hard_mode_unlock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ride 100 More Cards To Unlock Hard Mode"
+        android:textSize="18sp"
+        android:textColor="@color/red"
+        android:gravity="center"
+        android:padding="8dp"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="3"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>
