@@ -1,9 +1,11 @@
 package com.example.ridethebus
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import java.io.File
 
+@SuppressLint("StaticFieldLeak")
 object UserDataFileManager {
 
     private lateinit var context: Context
@@ -49,6 +51,10 @@ object UserDataFileManager {
 
     fun changeDisplayName(newName: String) {
         displayName = newName
+    }
+
+    fun retrieveDisplayName(): String {
+        return displayName
     }
 
     private fun filePath(forPlayer: String): File {

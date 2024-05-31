@@ -6,8 +6,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
-import java.text.SimpleDateFormat
-import java.util.*
 
 class FinishActivity : AppCompatActivity() {
 
@@ -27,7 +25,7 @@ class FinishActivity : AppCompatActivity() {
         tvScore = findViewById(R.id.tvScore)
 
         // Get the intent data
-        val playerName = intent.getStringExtra("PLAYER_NAME")
+        val playerName = intent.getStringExtra("PLAYER_NAME") ?: "Unknown"
         val score = intent.getIntExtra("SCORE", 0)
         val timestamp = System.currentTimeMillis() / 1000 // Current timestamp in seconds
 
@@ -54,11 +52,9 @@ class FinishActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadPlayerDataToFirebase(playerName: String?, score: Int, timestamp: Long) {
-        if (playerName == null) return
-
+    private fun uploadPlayerDataToFirebase(playerName: String, score: Int, timestamp: Long) {
         val database = FirebaseDatabase.getInstance()
-        val playerRef = database.getReference("players").push()
+        val playerRef = database.getReference("playerData").push()
 
         val playerData = hashMapOf(
             "playerName" to playerName,

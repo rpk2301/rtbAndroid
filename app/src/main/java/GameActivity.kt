@@ -31,6 +31,7 @@ class GameActivity : AppCompatActivity() {
     private val topCards = mutableListOf<Card>()
     private val allStacks = mutableListOf<MutableList<Card>>()
     private var score = 0
+    private var playerName: String? = null
 
     private var glowAnimator: ObjectAnimator? = null
 
@@ -59,6 +60,9 @@ class GameActivity : AppCompatActivity() {
             visibility = View.GONE
         }
         (btnLower.parent as ViewGroup).addView(btnHearts)
+
+        // Retrieve the player name from UserDataFileManager
+        playerName = UserDataFileManager.retrieveDisplayName()
 
         // Initialize deck and shuffle
         initializeDeck()
@@ -175,8 +179,11 @@ class GameActivity : AppCompatActivity() {
                 currentIndex++
                 updateButtonLabels()
             } else {
-                // Navigate to FinishActivity if the user successfully guesses the fourth stack
-                val intent = Intent(this, FinishActivity::class.java)
+
+                val intent = Intent(this, FinishActivity::class.java).apply {
+                    putExtra("PLAYER_NAME", UserDataFileManager.retrieveDisplayName())
+                    putExtra("SCORE", score)
+                }
                 startActivity(intent)
                 finish()
             }

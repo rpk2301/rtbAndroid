@@ -13,35 +13,34 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class MainActivity : AppCompatActivity(),  SetDisplayNameDialogFragment.SetDisplayNameListener,  ChangeNameDialogFragment.ChangeNameListener {
+class MainActivity : AppCompatActivity(), SetDisplayNameDialogFragment.SetDisplayNameListener, ChangeNameDialogFragment.ChangeNameListener {
 
-    private lateinit var rideCounter: TextView
+    private lateinit var rideCounterCombined: TextView
     private lateinit var databaseReference: DatabaseReference
     private lateinit var leaderboardButton: Button
     private lateinit var recentRidesButton: Button
     private lateinit var playButton: Button
     private lateinit var profileIcon: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         UserDataFileManager.initialize(this)
         setContentView(R.layout.activity_main)
 
-
         FirebaseApp.initializeApp(this)
 
-
-        rideCounter = findViewById(R.id.rideCounter)
+        rideCounterCombined = findViewById(R.id.rideCounterCombined)
         leaderboardButton = findViewById(R.id.leaderboardButton)
         recentRidesButton = findViewById(R.id.recentRidesButton)
         playButton = findViewById(R.id.playButton)
         profileIcon = findViewById(R.id.profileIcon)
+
         // Initialize Firebase Database
         databaseReference = FirebaseDatabase.getInstance().reference
 
-
         fetchTotalScore()
 
-        // Set up the button click listener
+        // Set up the button click listeners
         leaderboardButton.setOnClickListener {
             val intent = Intent(this, LeaderboardActivity::class.java)
             startActivity(intent)
@@ -53,20 +52,17 @@ class MainActivity : AppCompatActivity(),  SetDisplayNameDialogFragment.SetDispl
         }
 
         playButton.setOnClickListener {
-            if(UserDataFileManager.displayName == "") {
+            if (UserDataFileManager.displayName == "") {
                 showSetDisplayNameDialog()
-            }
-            else{
+            } else {
                 val intent = Intent(this, GameActivity::class.java)
                 startActivity(intent)
             }
         }
 
         profileIcon.setOnClickListener {
-                showChangeNameDialog()
-
+            showChangeNameDialog()
         }
-
     }
 
     private fun showSetDisplayNameDialog() {
@@ -80,27 +76,30 @@ class MainActivity : AppCompatActivity(),  SetDisplayNameDialogFragment.SetDispl
         dialog.setListener(this)
         dialog.show(supportFragmentManager, "ChangeNameDialogFragment")
     }
-    override fun onDisplayNameSet(displayName: String) {
 
+    override fun onDisplayNameSet(displayName: String) {
+        // Handle the display name set by the user
+        UserDataFileManager.displayName = displayName
     }
 
     override fun onNameChanged(newName: String) {
-
+        // Handle the name change
+        UserDataFileManager.displayName = newName
     }
 
     private fun fetchTotalScore() {
         databaseReference.child("totalScore").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
-
-                    val totalScore = dataSnapshot.getValue(Long::class.java)
-
-                    rideCounter.text = "$totalScore\nCards Ridden"
+                    // Get the totalScore value
+                    val totalScore = dataSnapshot.getValue(Long::class.java) ?: 0
+                    val combinedText = "$totalScore\nCards Ridden"
+                    rideCounterCombined.text = combinedText
                 }
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-
+                // Handle possible errors
             }
         })
     }
