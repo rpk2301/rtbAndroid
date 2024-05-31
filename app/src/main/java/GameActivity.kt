@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -21,11 +23,14 @@ class GameActivity : AppCompatActivity() {
     private lateinit var btnSame: Button
     private lateinit var btnLower: Button
     private lateinit var btnHearts: Button
+    private lateinit var btnBack: ImageButton
+    private lateinit var tvTitle: TextView
 
     private val deck = mutableListOf<Card>()
     private var currentIndex = 0
     private val topCards = mutableListOf<Card>()
     private val allStacks = mutableListOf<MutableList<Card>>()
+    private var score = 0
 
     private var glowAnimator: ObjectAnimator? = null
 
@@ -44,6 +49,8 @@ class GameActivity : AppCompatActivity() {
         btnHigher = findViewById(R.id.btnHigher)
         btnSame = findViewById(R.id.btnSame)
         btnLower = findViewById(R.id.btnLower)
+        btnBack = findViewById(R.id.btnBack)
+        tvTitle = findViewById(R.id.tvTitle)
 
         // Create the btnHearts dynamically and add it to the layout
         btnHearts = Button(this).apply {
@@ -72,6 +79,13 @@ class GameActivity : AppCompatActivity() {
         btnSame.setOnClickListener { guess("same") }
         btnLower.setOnClickListener { guess("lower") }
         btnHearts.setOnClickListener { guess("hearts") }
+
+        // Handle back button click
+        btnBack.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         // Set onClickListeners for each stack to navigate to StackDetailActivity
         cardStacks.forEachIndexed { index, frameLayout ->
@@ -147,15 +161,24 @@ class GameActivity : AppCompatActivity() {
             }
         }
 
-        if (correct) {
-            // Update the current card before moving to the next stack
-            topCards[currentIndex] = nextCard
-            allStacks[currentIndex].add(nextCard)
-            updateCardImage(cardStacks[currentIndex].getChildAt(0) as ImageView, nextCard)
+        // Update the current card before moving to the next stack
+        topCards[currentIndex] = nextCard
+        allStacks[currentIndex].add(nextCard)
+        updateCardImage(cardStacks[currentIndex].getChildAt(0) as ImageView, nextCard)
 
+        // Increment the score and update the TextView
+        score++
+        tvTitle.text = "Score: $score"
+
+        if (correct) {
             if (currentIndex < cardStacks.size - 1) {
                 currentIndex++
                 updateButtonLabels()
+            } else {
+                // Navigate to FinishActivity if the user successfully guesses the fourth stack
+                val intent = Intent(this, FinishActivity::class.java)
+                startActivity(intent)
+                finish()
             }
             Toast.makeText(this, "Correct! Moving to stack ${currentIndex + 1}", Toast.LENGTH_SHORT).show()
         } else {

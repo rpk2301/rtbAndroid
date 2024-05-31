@@ -15,6 +15,7 @@ class StackDetailActivity : AppCompatActivity() {
 
         val backArrow = findViewById<ImageView>(R.id.ivBackArrow)
         val stackTitle = findViewById<TextView>(R.id.tvStackTitle)
+        val cardCounts = findViewById<TextView>(R.id.tvCardCounts)
         val recyclerView = findViewById<RecyclerView>(R.id.rvStackCards)
 
         backArrow.setOnClickListener {
@@ -25,6 +26,11 @@ class StackDetailActivity : AppCompatActivity() {
         val cardsInStack = intent.getParcelableArrayListExtra<Card>("STACK_CARDS") ?: arrayListOf()
 
         stackTitle.text = "Stack ${stackIndex + 1} Details"
+
+        val redCardsCount = cardsInStack.count { it.suit == "hearts" || it.suit == "diamonds" }
+        val blackCardsCount = cardsInStack.count { it.suit == "clubs" || it.suit == "spades" }
+
+        cardCounts.text = "Red Cards: $redCardsCount Black Cards: $blackCardsCount"
 
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = CardAdapter(cardsInStack)

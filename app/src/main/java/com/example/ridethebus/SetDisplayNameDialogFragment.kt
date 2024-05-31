@@ -49,7 +49,7 @@ class SetDisplayNameDialogFragment : DialogFragment() {
         createNameButton.setOnClickListener {
             val playerName = playerNameEditText.text.toString().trim()
             if (playerName.isNotEmpty()) {
-                listener?.onDisplayNameSet(playerName)
+                UserDataFileManager.changeDisplayName(playerName)
                 dismiss()
             }
         }
