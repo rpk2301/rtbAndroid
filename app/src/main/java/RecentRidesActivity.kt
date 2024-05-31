@@ -1,6 +1,6 @@
-// com.example.ridethebus.RecentRidesActivity.kt
 package com.example.ridethebus
 
+import PlayerData
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
@@ -23,7 +23,6 @@ class RecentRidesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recent_rides)
 
-
         val backArrow: ImageView = findViewById(R.id.iv_back_arrow)
         val recentRidesTitle: TextView = findViewById(R.id.tv_recent_rides_title)
         recyclerView = findViewById(R.id.rv_recent_rides)
@@ -32,15 +31,11 @@ class RecentRidesActivity : AppCompatActivity() {
         recentRidesAdapter = RecentRidesAdapter(recentRidesList)
         recyclerView.adapter = recentRidesAdapter
 
-
         recentRidesTitle.text = "Recent Rides"
-
 
         databaseReference = FirebaseDatabase.getInstance().reference
 
-
         fetchRecentRides()
-
 
         backArrow.setOnClickListener {
             finish()
@@ -55,7 +50,13 @@ class RecentRidesActivity : AppCompatActivity() {
                     for (dataSnapshot in snapshot.children) {
                         val playerData = dataSnapshot.getValue(PlayerData::class.java)
                         if (playerData != null) {
-                            recentRidesList.add(playerData)
+                            // Check if isHardModeEnabled is present, default to false if not
+                            val isHardModeEnabled = dataSnapshot.child("isHardModeEnabled").getValue(Boolean::class.java) ?: false
+                            // Check if platform is present, default to "iOS" if not
+                            val platform = dataSnapshot.child("platform").getValue(String::class.java) ?: "iOS"
+                            val playerDataWithPlatform = playerData.copy(isHardModeEnabled = isHardModeEnabled, platform = platform)
+                            Log.d("RecentRidesActivity", "Fetched player data: $playerDataWithPlatform")
+                            recentRidesList.add(playerDataWithPlatform)
                         }
                     }
                     recentRidesList.sortByDescending { it.timestamp }

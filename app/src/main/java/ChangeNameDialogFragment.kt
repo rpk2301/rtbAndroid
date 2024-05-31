@@ -95,19 +95,17 @@ class ChangeNameDialogFragment : DialogFragment() {
 
     private fun updateHardModeViews() {
         val redColor = ContextCompat.getColor(requireContext(), R.color.red)
-        val yellowColor = ContextCompat.getColor(requireContext(), R.color.yellow)
-        val greenDarkColor = ContextCompat.getColor(requireContext(), R.color.green_dark)
         val orangeDarkColor = ContextCompat.getColor(requireContext(), R.color.orange_dark)
-        val darkerGrayColor = ContextCompat.getColor(requireContext(), R.color.darker_gray)
+        val clearColor = ContextCompat.getColor(requireContext(), R.color.clear)
 
         if (isHardModeEnabled) {
             hardModeTextView.setTextColor(redColor)
             hardModeToggleImageView.setImageResource(android.R.drawable.checkbox_on_background)
-            hardModeToggleImageView.setColorFilter(greenDarkColor)
+            hardModeToggleImageView.setColorFilter(clearColor)
         } else {
             hardModeTextView.setTextColor(orangeDarkColor)
             hardModeToggleImageView.setImageResource(android.R.drawable.checkbox_off_background)
-            hardModeToggleImageView.setColorFilter(darkerGrayColor)
+            hardModeToggleImageView.setColorFilter(clearColor)
         }
 
         if (totalScore < 100) {

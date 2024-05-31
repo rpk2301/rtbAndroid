@@ -1,6 +1,6 @@
-// com.example.ridethebus.LeaderboardActivity.kt
 package com.example.ridethebus
 
+import PlayerData
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
@@ -23,7 +23,6 @@ class LeaderboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboard)
 
-
         val backArrow: ImageView = findViewById(R.id.iv_back_arrow)
         val leaderboardTitle: TextView = findViewById(R.id.tv_leaderboard_title)
         recyclerView = findViewById(R.id.rv_leaderboard)
@@ -32,16 +31,12 @@ class LeaderboardActivity : AppCompatActivity() {
         leaderboardAdapter = LeaderboardAdapter(playerList)
         recyclerView.adapter = leaderboardAdapter
 
-
         val currentMonth = SimpleDateFormat("MMMM", Locale.getDefault()).format(Date())
         leaderboardTitle.text = "$currentMonth Leaderboard"
 
-
         databaseReference = FirebaseDatabase.getInstance().reference
 
-
         fetchPlayerData()
-
 
         backArrow.setOnClickListener {
             finish()
@@ -59,7 +54,6 @@ class LeaderboardActivity : AppCompatActivity() {
                 for (dataSnapshot in snapshot.children) {
                     val playerData = dataSnapshot.getValue(PlayerData::class.java)
                     if (playerData != null) {
-
                         val timestampInMilliseconds = playerData.timestamp * 1000L
                         val entryDate = Date(timestampInMilliseconds)
                         calendar.time = entryDate
@@ -68,7 +62,9 @@ class LeaderboardActivity : AppCompatActivity() {
                         val entryYear = calendar.get(Calendar.YEAR)
 
                         if (entryMonth == currentMonth && entryYear == currentYear) {
-                            playerList.add(playerData)
+                            // Check if isHardModeEnabled is present, default to false if not
+                            val isHardModeEnabled = dataSnapshot.child("isHardModeEnabled").getValue(Boolean::class.java) ?: false
+                            playerList.add(playerData.copy(isHardModeEnabled = isHardModeEnabled))
                         }
                     }
                 }

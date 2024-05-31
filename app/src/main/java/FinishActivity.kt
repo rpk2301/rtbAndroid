@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class FinishActivity : AppCompatActivity() {
 
@@ -34,6 +37,7 @@ class FinishActivity : AppCompatActivity() {
 
         // Upload player data to Firebase
         uploadPlayerDataToFirebase(playerName, score, timestamp)
+        UserDataFileManager.writeTotalScore(score)
 
         // Set button click listeners
         btnLeaderboard.setOnClickListener {
@@ -42,7 +46,7 @@ class FinishActivity : AppCompatActivity() {
         }
 
         btnPlayAgain.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, GameActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -52,23 +56,39 @@ class FinishActivity : AppCompatActivity() {
         }
     }
 
+
     private fun uploadPlayerDataToFirebase(playerName: String, score: Int, timestamp: Long) {
         val database = FirebaseDatabase.getInstance()
         val playerRef = database.getReference("playerData").push()
+        val totalScoreRef = database.getReference("totalScore")
 
+        val isHardModeEnabled = UserDataFileManager.isHardModeEnabled()
         val playerData = hashMapOf(
             "playerName" to playerName,
             "score" to score,
             "timestamp" to timestamp,
-            "platform" to "Android"
+            "platform" to "Android",
+            "isHardModeEnabled" to isHardModeEnabled
         )
 
         playerRef.setValue(playerData).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 // Data uploaded successfully
+                totalScoreRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val tempScore = snapshot.getValue(Int::class.java) ?: 0
+                        totalScoreRef.setValue(tempScore + score)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        // Handle error
+                    }
+                })
             } else {
-                // Handle the error
+                // Handle failure
             }
         }
     }
 }
+
+

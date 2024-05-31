@@ -24,7 +24,7 @@
             android:layout_centerVertical="true"
             android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
-            app:tint="@android:color/white" />
+            app:tint="@color/yellow" />
 
         <TextView
             android:id="@+id/tvTitle"
@@ -32,7 +32,11 @@
             android:layout_height="wrap_content"
             android:text="Ride The Bus"
             android:textSize="24sp"
-            android:textColor="@android:color/white"
+            android:textColor="@color/yellow"
+            android:shadowColor="#000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="3"
             android:textStyle="bold"
             android:layout_centerInParent="true"
             android:layout_marginTop="16dp" />
@@ -113,17 +117,19 @@
 
     <LinearLayout
         android:id="@+id/buttonsLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/cardsLayout"
         android:layout_centerHorizontal="true"
-        android:gravity="center">
+        android:gravity="center"
+        android:weightSum="4"> <!-- Updated weightSum to 4 for 4 buttons -->
 
         <Button
             android:id="@+id/btnHigher"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Higher"
             android:background="@drawable/btn_higher"
             android:textColor="@android:color/white"
@@ -134,8 +140,9 @@
 
         <Button
             android:id="@+id/btnSame"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Same"
             android:background="@drawable/btn_same"
             android:textColor="@android:color/white"
@@ -146,14 +153,30 @@
 
         <Button
             android:id="@+id/btnLower"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Lower"
             android:background="@drawable/btn_lower"
             android:textColor="@android:color/white"
+            android:layout_marginEnd="16dp"
             android:padding="8dp"
             android:textStyle="bold"
             android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnHearts"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Hearts"
+            android:background="@drawable/btn_red"
+            android:textColor="@android:color/white"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginEnd="16dp"
+            android:visibility="gone" /> <!-- Initially hidden -->
     </LinearLayout>
 
 </RelativeLayout>

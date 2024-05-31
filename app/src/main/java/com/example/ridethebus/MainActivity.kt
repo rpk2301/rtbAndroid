@@ -12,9 +12,15 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.android.gms.ads.MobileAds
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 
 class MainActivity : AppCompatActivity(), SetDisplayNameDialogFragment.SetDisplayNameListener, ChangeNameDialogFragment.ChangeNameListener {
-
+    private lateinit var adView: AdView
     private lateinit var rideCounterCombined: TextView
     private lateinit var databaseReference: DatabaseReference
     private lateinit var leaderboardButton: Button
@@ -28,6 +34,15 @@ class MainActivity : AppCompatActivity(), SetDisplayNameDialogFragment.SetDispla
         setContentView(R.layout.activity_main)
 
         FirebaseApp.initializeApp(this)
+        val backgroundScope = CoroutineScope(Dispatchers.IO)
+        backgroundScope.launch {
+            // Initialize the Google Mobile Ads SDK on a background thread.
+            MobileAds.initialize(this@MainActivity) {}
+        }
+
+        adView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
 
         rideCounterCombined = findViewById(R.id.rideCounterCombined)
         leaderboardButton = findViewById(R.id.leaderboardButton)

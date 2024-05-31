@@ -5,11 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -50,16 +50,9 @@ class GameActivity : AppCompatActivity() {
         btnHigher = findViewById(R.id.btnHigher)
         btnSame = findViewById(R.id.btnSame)
         btnLower = findViewById(R.id.btnLower)
+        btnHearts = findViewById(R.id.btnHearts)
         btnBack = findViewById(R.id.btnBack)
         tvTitle = findViewById(R.id.tvTitle)
-
-        // Create the btnHearts dynamically and add it to the layout
-        btnHearts = Button(this).apply {
-            id = View.generateViewId()
-            text = "Hearts"
-            visibility = View.GONE
-        }
-        (btnLower.parent as ViewGroup).addView(btnHearts)
 
         // Retrieve the player name from UserDataFileManager
         playerName = UserDataFileManager.retrieveDisplayName()
@@ -109,15 +102,13 @@ class GameActivity : AppCompatActivity() {
                 deck.add(Card(suit, rank))
             }
         }
-
-        // Log each card in the deck
-        for (card in deck) {
-            Log.d("Deck", "Card: ${card.rank} of ${card.suit}")
-        }
     }
 
     private fun shuffleDeck() {
         deck.shuffle(Random(System.currentTimeMillis()))
+        for (card in deck) {
+            Log.d("Deck", "Card: ${card.rank} of ${card.suit}")
+        }
     }
 
     private fun drawInitialCards() {
@@ -140,7 +131,9 @@ class GameActivity : AppCompatActivity() {
 
     private fun guess(guessType: String) {
         if (deck.isEmpty()) {
-            Toast.makeText(this, "No more cards in the deck", Toast.LENGTH_SHORT).show()
+            initializeDeck()
+            shuffleDeck()
+            Toast.makeText(this, "The Deck Has Depleted. Dealing New Deck", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -179,7 +172,6 @@ class GameActivity : AppCompatActivity() {
                 currentIndex++
                 updateButtonLabels()
             } else {
-
                 val intent = Intent(this, FinishActivity::class.java).apply {
                     putExtra("PLAYER_NAME", UserDataFileManager.retrieveDisplayName())
                     putExtra("SCORE", score)
@@ -187,13 +179,15 @@ class GameActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-            Toast.makeText(this, "Correct! Moving to stack ${currentIndex + 1}", Toast.LENGTH_SHORT).show()
         } else {
-            if (currentIndex > 0) {
-                currentIndex--
-                updateButtonLabels()
+            if (UserDataFileManager.isHardModeEnabled()) {
+                currentIndex = 0
+            } else {
+                if (currentIndex > 0) {
+                    currentIndex--
+                }
             }
-            Toast.makeText(this, "Incorrect! Moving back to stack ${currentIndex + 1}", Toast.LENGTH_SHORT).show()
+            updateButtonLabels()
         }
 
         // Apply glow animation to the new current stack
@@ -256,16 +250,16 @@ class GameActivity : AppCompatActivity() {
             3 -> {
                 // Fourth stack: Guess suit
                 btnHigher.text = "Clubs"
-                btnHigher.setBackgroundResource(R.drawable.btn_default) // Reset to default background
-                btnHigher.setTextColor(ContextCompat.getColor(this, android.R.color.black))
+                btnHigher.setBackgroundResource(R.drawable.btn_black) // Reset to default background
+                btnHigher.setTextColor(ContextCompat.getColor(this, android.R.color.white))
                 btnHigher.setOnClickListener { guess("clubs") }
                 btnSame.text = "Spades"
-                btnSame.setBackgroundResource(R.drawable.btn_default) // Reset to default background
-                btnSame.setTextColor(ContextCompat.getColor(this, android.R.color.black))
+                btnSame.setBackgroundResource(R.drawable.btn_black) // Reset to default background
+                btnSame.setTextColor(ContextCompat.getColor(this, android.R.color.white))
                 btnSame.setOnClickListener { guess("spades") }
                 btnLower.text = "Diamonds"
-                btnLower.setBackgroundResource(R.drawable.btn_default) // Reset to default background
-                btnLower.setTextColor(ContextCompat.getColor(this, android.R.color.black))
+                btnLower.setBackgroundResource(R.drawable.btn_red) // Reset to default background
+                btnLower.setTextColor(ContextCompat.getColor(this, android.R.color.white))
                 btnLower.setOnClickListener { guess("diamonds") }
                 btnLower.visibility = View.VISIBLE // Show the lower button
                 btnHearts.visibility = View.VISIBLE // Show the hearts button

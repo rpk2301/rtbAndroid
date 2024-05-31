@@ -1,7 +1,7 @@
-package com.example.ridethebus
-
 data class PlayerData(
     val playerName: String = "",
+    val timestamp: Long = 0,
     val score: Int = 0,
-    val timestamp: Long = 0L
+    val isHardModeEnabled: Boolean = false,
+    val platform: String = "" // Ensure this field is included
 )

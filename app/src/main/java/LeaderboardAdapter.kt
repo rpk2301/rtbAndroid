@@ -1,7 +1,6 @@
-// com.example.ridethebus.LeaderboardAdapter.kt
 package com.example.ridethebus
 
-import android.util.Log
+import PlayerData
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,21 +30,23 @@ class LeaderboardAdapter(private val playerList: List<PlayerData>) :
         holder.rankTextView.text = "${position + 1}."
         holder.playerNameTextView.text = player.playerName
 
-
-        Log.d("LeaderboardAdapter", "Raw Timestamp: ${player.timestamp}")
-
-
         val timestampInMilliseconds = player.timestamp * 1000L
-
-
         val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
         val date = Date(timestampInMilliseconds)
         holder.timestampTextView.text = dateFormat.format(date)
 
-
-        Log.d("LeaderboardAdapter", "Formatted Date: ${dateFormat.format(date)}")
-
         holder.scoreTextView.text = player.score.toString()
+
+        // Change text color based on isHardModeEnabled
+        val textColor = if (player.isHardModeEnabled) {
+            holder.itemView.context.resources.getColor(R.color.red)
+        } else {
+            holder.itemView.context.resources.getColor(R.color.yellow)
+        }
+        holder.rankTextView.setTextColor(textColor)
+        holder.playerNameTextView.setTextColor(textColor)
+        holder.timestampTextView.setTextColor(textColor)
+        holder.scoreTextView.setTextColor(textColor)
     }
 
     override fun getItemCount() = playerList.size
