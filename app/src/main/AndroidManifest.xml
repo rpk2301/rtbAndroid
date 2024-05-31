@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RideTheBus">
         <activity android:name=".RecentRidesActivity" />
-        <activity android:name=".GameActivity" />
+        <activity android:name=".StackDetailActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".GameActivity"
+            android:screenOrientation="landscape"/>
         <activity android:name=".LeaderboardActivity" />
         <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

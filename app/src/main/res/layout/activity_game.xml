@@ -1,45 +1,92 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/backgroundcloth"
     android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/cardStack1"
+    <TextView
+        android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/three_of_clubs" />
-
-    <ImageView
-        android:id="@+id/cardStack2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/three_of_clubs" />
-
-    <ImageView
-        android:id="@+id/cardStack3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/three_of_clubs" />
-
-    <ImageView
-        android:id="@+id/cardStack4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/three_of_clubs" />
-
+        android:text="Ride The Bus"
+        android:textColor="@color/yellow"
+        android:textSize="24dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="3"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="16dp" />
+<!--Rotation 270 -->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/cardsLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_below="@id/titleText"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:layout_marginTop="16dp">
+        android:layout_marginBottom="16dp">
+<!--Rotation 180 -->
+        <FrameLayout
+            android:id="@+id/frameLayout1"
+            android:layout_width="140dp"
+            android:layout_height="180dp"
+            android:layout_marginEnd="8dp">
+            <ImageView
+                android:id="@+id/cardStack1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:rotation="180" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayout2"
+            android:layout_width="140dp"
+            android:layout_height="180dp"
+            android:layout_marginEnd="8dp">
+            <ImageView
+                android:id="@+id/cardStack2"
+                android:layout_width="135dp"
+                android:layout_height="180dp"
+                android:rotation="180" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayout3"
+            android:layout_width="140dp"
+            android:layout_height="180dp"
+            android:layout_marginEnd="8dp">
+            <ImageView
+                android:id="@+id/cardStack3"
+                android:layout_width="135dp"
+                android:layout_height="180dp"
+                android:rotation="180" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayout4"
+            android:layout_width="140dp"
+            android:layout_height="180dp">
+            <ImageView
+                android:id="@+id/cardStack4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:rotation="180" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/cardsLayout"
+        android:layout_centerHorizontal="true"
+        android:gravity="center">
 
         <Button
             android:id="@+id/btnHigher"
@@ -48,7 +95,7 @@
             android:text="Higher"
             android:background="@drawable/btn_higher"
             android:textColor="@android:color/white"
-            android:layout_margin="8dp"
+            android:layout_marginEnd="16dp"
             android:padding="8dp"
             android:textStyle="bold"
             android:textSize="16sp" />
@@ -60,7 +107,7 @@
             android:text="Same"
             android:background="@drawable/btn_same"
             android:textColor="@android:color/white"
-            android:layout_margin="8dp"
+            android:layout_marginEnd="16dp"
             android:padding="8dp"
             android:textStyle="bold"
             android:textSize="16sp" />
@@ -72,13 +119,9 @@
             android:text="Lower"
             android:background="@drawable/btn_lower"
             android:textColor="@android:color/white"
-            android:layout_margin="8dp"
             android:padding="8dp"
             android:textStyle="bold"
             android:textSize="16sp" />
-
     </LinearLayout>
 
-
-    </LinearLayout>
-
+</RelativeLayout>

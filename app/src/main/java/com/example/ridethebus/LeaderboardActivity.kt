@@ -23,7 +23,7 @@ class LeaderboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboard)
 
-        // Initialize UI elements
+
         val backArrow: ImageView = findViewById(R.id.iv_back_arrow)
         val leaderboardTitle: TextView = findViewById(R.id.tv_leaderboard_title)
         recyclerView = findViewById(R.id.rv_leaderboard)
@@ -32,19 +32,19 @@ class LeaderboardActivity : AppCompatActivity() {
         leaderboardAdapter = LeaderboardAdapter(playerList)
         recyclerView.adapter = leaderboardAdapter
 
-        // Set the leaderboard title to the current month
+
         val currentMonth = SimpleDateFormat("MMMM", Locale.getDefault()).format(Date())
         leaderboardTitle.text = "$currentMonth Leaderboard"
 
-        // Initialize Firebase Database
+
         databaseReference = FirebaseDatabase.getInstance().reference
 
-        // Fetch player data from Firebase
+
         fetchPlayerData()
 
-        // Set the click listener for the back arrow
+
         backArrow.setOnClickListener {
-            finish() // Close this activity and go back to the previous one
+            finish()
         }
     }
 
@@ -59,7 +59,7 @@ class LeaderboardActivity : AppCompatActivity() {
                 for (dataSnapshot in snapshot.children) {
                     val playerData = dataSnapshot.getValue(PlayerData::class.java)
                     if (playerData != null) {
-                        // Convert the timestamp from seconds to milliseconds
+
                         val timestampInMilliseconds = playerData.timestamp * 1000L
                         val entryDate = Date(timestampInMilliseconds)
                         calendar.time = entryDate

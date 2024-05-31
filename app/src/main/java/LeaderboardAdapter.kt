@@ -31,18 +31,18 @@ class LeaderboardAdapter(private val playerList: List<PlayerData>) :
         holder.rankTextView.text = "${position + 1}."
         holder.playerNameTextView.text = player.playerName
 
-        // Log the raw timestamp value
+
         Log.d("LeaderboardAdapter", "Raw Timestamp: ${player.timestamp}")
 
-        // Convert the timestamp from seconds to milliseconds
+
         val timestampInMilliseconds = player.timestamp * 1000L
 
-        // Format the timestamp correctly
+
         val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
         val date = Date(timestampInMilliseconds)
         holder.timestampTextView.text = dateFormat.format(date)
 
-        // Log the formatted date
+
         Log.d("LeaderboardAdapter", "Formatted Date: ${dateFormat.format(date)}")
 
         holder.scoreTextView.text = player.score.toString()

@@ -28,7 +28,7 @@ class RecentRidesAdapter(private val recentRidesList: List<PlayerData>) :
         val player = recentRidesList[position]
         holder.playerNameTextView.text = player.playerName
 
-        // Convert the timestamp from seconds to milliseconds
+
         val timestampInMilliseconds = player.timestamp * 1000L
         val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
         val date = Date(timestampInMilliseconds)

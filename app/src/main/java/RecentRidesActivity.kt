@@ -23,7 +23,7 @@ class RecentRidesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recent_rides)
 
-        // Initialize UI elements
+
         val backArrow: ImageView = findViewById(R.id.iv_back_arrow)
         val recentRidesTitle: TextView = findViewById(R.id.tv_recent_rides_title)
         recyclerView = findViewById(R.id.rv_recent_rides)
@@ -32,18 +32,18 @@ class RecentRidesActivity : AppCompatActivity() {
         recentRidesAdapter = RecentRidesAdapter(recentRidesList)
         recyclerView.adapter = recentRidesAdapter
 
-        // Set the title
+
         recentRidesTitle.text = "Recent Rides"
 
-        // Initialize Firebase Database
+
         databaseReference = FirebaseDatabase.getInstance().reference
 
-        // Fetch recent rides data from Firebase
+
         fetchRecentRides()
 
-        // Set the click listener for the back arrow
+
         backArrow.setOnClickListener {
-            finish() // Close this activity and go back to the previous one
+            finish()
         }
     }
 

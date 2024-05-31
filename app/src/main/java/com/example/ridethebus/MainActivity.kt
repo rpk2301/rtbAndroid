@@ -26,10 +26,10 @@ class MainActivity : AppCompatActivity(),  SetDisplayNameDialogFragment.SetDispl
         UserDataFileManager.initialize(this)
         setContentView(R.layout.activity_main)
 
-        // Initialize Firebase
+
         FirebaseApp.initializeApp(this)
 
-        // Initialize TextView and Button
+
         rideCounter = findViewById(R.id.rideCounter)
         leaderboardButton = findViewById(R.id.leaderboardButton)
         recentRidesButton = findViewById(R.id.recentRidesButton)
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(),  SetDisplayNameDialogFragment.SetDispl
         // Initialize Firebase Database
         databaseReference = FirebaseDatabase.getInstance().reference
 
-        // Fetch totalScore from Firebase
+
         fetchTotalScore()
 
         // Set up the button click listener
@@ -81,29 +81,26 @@ class MainActivity : AppCompatActivity(),  SetDisplayNameDialogFragment.SetDispl
         dialog.show(supportFragmentManager, "ChangeNameDialogFragment")
     }
     override fun onDisplayNameSet(displayName: String) {
-        // Handle the display name set by the user
-        // For example, save it to the database or update the UI
-        // UserDataFileManager.changeDisplayName(newName: displayName)
+
     }
 
     override fun onNameChanged(newName: String) {
-        // Handle the name change
-        // For example, update the UI or save the new name
+
     }
 
     private fun fetchTotalScore() {
         databaseReference.child("totalScore").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    // Get the totalScore value
+
                     val totalScore = dataSnapshot.getValue(Long::class.java)
-                    // Update the TextView
+
                     rideCounter.text = "$totalScore\nCards Ridden"
                 }
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle possible errors
+
             }
         })
     }
