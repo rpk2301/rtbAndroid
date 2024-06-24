@@ -5,14 +5,14 @@ plugins {
 }
 
 android {
-    namespace = "com.example.ridethebus"
+    namespace = "com.rpk2301.ridethebus"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.ridethebus"
+        applicationId = "com.rpk2301.ridethebus"
         minSdk = 21
         targetSdk = 34
-        versionCode = 1
+        versionCode = 3
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

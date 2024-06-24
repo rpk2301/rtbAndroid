@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ride The Bus Is Played With Five Cards Laid Horizontally"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"/>
+
+    <ImageView
+        android:id="@+id/iv_how_to_play_image"
+        android:layout_width="350sp"
+        android:layout_height="300sp"
+        android:src="@drawable/howtoplayfull"
+    android:contentDescription="How to Play Image"
+    android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The Highlighted Card Is The Position You Are Currently In"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="64dp"/>
+
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ride The Bus!"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"
+        />
+
+    <ImageView
+        android:id="@+id/iv_how_to_play_image1"
+        android:layout_width="350sp"
+        android:layout_height="300sp"
+        android:src="@drawable/howtoplayfull"
+        android:contentDescription="How to Play Image"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Correctly Guess Factors About The Next Card In The Deck To Advance Positions"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="64dp"/>
+
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stacks 1 and 2"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"/>
+
+    <ImageView
+        android:id="@+id/iv_how_to_play_image2"
+        android:layout_width="350sp"
+        android:layout_height="300sp"
+        android:src="@drawable/firsttwo"
+        android:contentDescription="How to Play Image"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="On The First Two Stacks, Guess Whether The Next Card Drawn Will Be Higher Or Lower Than The Highlighted Card"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="64dp"/>
+
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stacks 3 and 4"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"/>
+
+    <ImageView
+        android:id="@+id/iv_how_to_play_image3"
+        android:layout_width="350sp"
+        android:layout_height="300sp"
+        android:src="@drawable/finaltwo"
+        android:contentDescription="How to Play Image"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="On The Final Two Stacks, Guess The Next Cards Color And Suit, Respectively"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="64dp"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Progression"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"/>
+
+    <ImageView
+        android:id="@+id/iv_how_to_play_image4"
+        android:layout_width="350sp"
+        android:layout_height="300sp"
+        android:src="@drawable/howtoplaysuit"
+        android:contentDescription="How to Play Image"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A Correct Guess Will Advance You One Stack, While An Incorrect A Guess Will Move You Back"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="64dp"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View A Stack"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"/>
+
+    <ImageView
+        android:id="@+id/iv_how_to_play_image5"
+        android:layout_width="350sp"
+        android:layout_height="300sp"
+        android:src="@drawable/stackdetails"
+        android:contentDescription="How to Play Image"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select A Stack To View Its Contents - This Can Help You Make A Guess On Later Stacks In The Bus"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="64dp"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Drinking And Riding"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"/>
+
+    <ImageView
+        android:id="@+id/iv_how_to_play_image6"
+        android:layout_width="350sp"
+        android:layout_height="300sp"
+        android:src="@drawable/horizontalcard"
+        android:contentDescription="How to Play Image"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="If Drinking While Riding The Bus, Take A Sip Everytime A Guess Is Incorrect Aswell As Everytime The Horizontal Card In The Middle Is Crossed."
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="64dp"/>
+
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Miles"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"/>
+
+    <ImageView
+        android:id="@+id/iv_how_to_play_image7"
+        android:layout_width="350sp"
+        android:layout_height="300sp"
+        android:src="@drawable/cardsridden"
+        android:contentDescription="How to Play Image"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="On Your Homescreen, You Can See The Total Cards Ridden Worldwide"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="64dp"/>
+
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leaderboard"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"/>
+
+    <ImageView
+        android:id="@+id/iv_how_to_play_image8"
+        android:layout_width="450sp"
+        android:layout_height="400sp"
+        android:src="@drawable/leaderboardss"
+        android:contentDescription="How to Play Image"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Visit The Leaderboard To See The Best And Worst Rides - Hard Mode Rides Appear In Red"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="64dp"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hard Mode"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"/>
+
+    <ImageView
+        android:id="@+id/iv_how_to_play_image9"
+        android:layout_width="450sp"
+        android:layout_height="400sp"
+        android:src="@drawable/changenamess"
+        android:contentDescription="How to Play Image"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="In Hard Mode, Every Card You Guess Incorrectly Moves You Back To The First Stack"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="64dp"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enabling Hard Mode"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"/>
+
+    <ImageView
+        android:id="@+id/iv_how_to_play_image10"
+        android:layout_width="350sp"
+        android:layout_height="300sp"
+        android:src="@drawable/enablehm"
+        android:contentDescription="How to Play Image"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To Enable Hard Mode, You Must First Ride 100 Cards - Then Head To The Profile Icon From The Home Page"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="64dp"/>
+
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thank You"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"/>
+
+    <ImageView
+        android:id="@+id/iv_how_to_play_image11"
+        android:layout_width="350sp"
+        android:layout_height="300sp"
+        android:src="@drawable/home"
+        android:contentDescription="How to Play Image"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_how_to_play_instructions_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thanks For Reading - Enjoy Your Ride!"
+        android:textColor="@color/yellow"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="64dp"/>
+
+</LinearLayout>

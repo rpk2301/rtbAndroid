@@ -1,0 +1,92 @@
+package com.rpk2301.ridethebus
+
+import PlayerData
+import android.os.Bundle
+import android.util.Log
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
+import com.google.firebase.database.*
+import java.text.SimpleDateFormat
+import java.util.*
+
+class LeaderboardActivity : AppCompatActivity() {
+
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var leaderboardAdapter: LeaderboardAdapter
+    private val playerList = mutableListOf<PlayerData>()
+    private lateinit var adView: AdView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_leaderboard)
+
+        val backArrow: ImageView = findViewById(R.id.iv_back_arrow)
+        val leaderboardTitle: TextView = findViewById(R.id.tv_leaderboard_title)
+        recyclerView = findViewById(R.id.rv_leaderboard)
+        adView = findViewById(R.id.adView)
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        leaderboardAdapter = LeaderboardAdapter(playerList)
+        recyclerView.adapter = leaderboardAdapter
+
+        val currentMonth = SimpleDateFormat("MMMM", Locale.getDefault()).format(Date())
+        leaderboardTitle.text = "$currentMonth Leaderboard"
+
+        databaseReference = FirebaseDatabase.getInstance().reference
+
+        fetchPlayerData()
+
+        backArrow.setOnClickListener {
+            finish()
+        }
+
+        // Initialize the Mobile Ads SDK
+        MobileAds.initialize(this) {}
+
+        // Load an ad into the AdView
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
+    }
+
+    private fun fetchPlayerData() {
+        databaseReference.child("playerData").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                playerList.clear()
+                val calendar = Calendar.getInstance()
+                val currentMonth = calendar.get(Calendar.MONTH)
+                val currentYear = calendar.get(Calendar.YEAR)
+
+                for (dataSnapshot in snapshot.children) {
+                    val playerData = dataSnapshot.getValue(PlayerData::class.java)
+                    if (playerData != null) {
+                        val timestampInMilliseconds = playerData.timestamp * 1000L
+                        val entryDate = Date(timestampInMilliseconds)
+                        calendar.time = entryDate
+
+                        val entryMonth = calendar.get(Calendar.MONTH)
+                        val entryYear = calendar.get(Calendar.YEAR)
+
+                        if (entryMonth == currentMonth && entryYear == currentYear) {
+                            // Check if isHardModeEnabled is present, default to false if not
+                            val isHardModeEnabled = dataSnapshot.child("isHardModeEnabled").getValue(Boolean::class.java) ?: false
+                            playerList.add(playerData.copy(isHardModeEnabled = isHardModeEnabled))
+                        }
+                    }
+                }
+                playerList.sortByDescending { it.score }
+                leaderboardAdapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("LeaderboardActivity", "Failed to load player data", error.toException())
+            }
+        })
+    }
+}

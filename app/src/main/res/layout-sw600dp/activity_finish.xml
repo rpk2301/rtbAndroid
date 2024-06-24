@@ -1,0 +1,93 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundcloth"
+    android:padding="32dp">
+
+    <TextView
+        android:id="@+id/tvScore2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play Again?"
+        android:textSize="80sp"
+        android:textColor="@color/yellow"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp" />
+
+    <TextView
+        android:id="@+id/tvScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score: 0"
+        android:textSize="60sp"
+        android:textColor="@color/yellow"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="3"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tvScore2"
+        android:layout_marginTop="24dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/tvScore"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/btnLeaderboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Go To Leaderboard"
+            android:background="@drawable/btn_leaderboard"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="24dp"
+            android:padding="32dp"
+            android:textStyle="bold"
+            android:textSize="32sp" />
+
+        <Button
+            android:id="@+id/btnPlayAgain"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Play Again"
+            android:background="@drawable/btn_playagain"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="24dp"
+            android:padding="32dp"
+            android:textStyle="bold"
+            android:textSize="32sp" />
+
+        <Button
+            android:id="@+id/btnExit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Exit"
+            android:background="@drawable/btn_exit"
+            android:textColor="@android:color/white"
+            android:padding="32dp"
+            android:textStyle="bold"
+            android:textSize="32sp" />
+    </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-7120216648764232/8738396414"/>
+</RelativeLayout>

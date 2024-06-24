@@ -1,10 +1,13 @@
-package com.example.ridethebus
+package com.rpk2301.ridethebus
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -16,6 +19,7 @@ class FinishActivity : AppCompatActivity() {
     private lateinit var btnPlayAgain: Button
     private lateinit var btnExit: Button
     private lateinit var tvScore: TextView
+    private lateinit var adView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +30,14 @@ class FinishActivity : AppCompatActivity() {
         btnPlayAgain = findViewById(R.id.btnPlayAgain)
         btnExit = findViewById(R.id.btnExit)
         tvScore = findViewById(R.id.tvScore)
+        adView = findViewById(R.id.adView)
+
+        // Initialize the Mobile Ads SDK
+        MobileAds.initialize(this) {}
+
+        // Load an ad into the AdView
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
 
         // Get the intent data
         val playerName = intent.getStringExtra("PLAYER_NAME") ?: "Unknown"
@@ -55,7 +67,6 @@ class FinishActivity : AppCompatActivity() {
             finish()
         }
     }
-
 
     private fun uploadPlayerDataToFirebase(playerName: String, score: Int, timestamp: Long) {
         val database = FirebaseDatabase.getInstance()
@@ -90,5 +101,3 @@ class FinishActivity : AppCompatActivity() {
         }
     }
 }
-
-

@@ -1,4 +1,4 @@
-package com.example.ridethebus
+package com.rpk2301.ridethebus
 
 import android.animation.ObjectAnimator
 import android.content.Intent

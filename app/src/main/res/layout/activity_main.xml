@@ -130,6 +130,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+        ads:adUnitId="ca-app-pub-7120216648764232/8738396414" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

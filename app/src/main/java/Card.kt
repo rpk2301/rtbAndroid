@@ -1,4 +1,4 @@
-package com.example.ridethebus
+package com.rpk2301.ridethebus
 
 import android.os.Parcel
 import android.os.Parcelable

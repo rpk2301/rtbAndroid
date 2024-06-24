@@ -1,0 +1,176 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundcloth"
+    android:padding="32dp">
+
+    <RelativeLayout
+        android:id="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="32dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/baseline_arrow_back_24"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            app:tint="@color/yellow" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ride The Bus"
+            android:textSize="48sp"
+            android:textColor="@color/yellow"
+            android:shadowColor="#000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="3"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="32dp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/cardsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/topLayout"
+        android:gravity="center"
+        android:layout_marginBottom="32dp">
+
+        <FrameLayout
+            android:id="@+id/frameLayout1"
+            android:layout_width="240dp"
+            android:layout_height="320dp"
+            android:layout_marginEnd="16dp">
+            <ImageView
+                android:id="@+id/cardStack1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:rotation="360" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayout2"
+            android:layout_width="240dp"
+            android:layout_height="320dp"
+            android:layout_marginEnd="16dp">
+            <ImageView
+                android:id="@+id/cardStack2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:rotation="360" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/cardback"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            app:srcCompat="@drawable/cardback"
+            android:rotation="90"
+            android:layout_marginTop="32dp"/>
+
+        <FrameLayout
+            android:id="@+id/frameLayout3"
+            android:layout_width="240dp"
+            android:layout_height="320dp"
+            android:layout_marginEnd="16dp">
+            <ImageView
+                android:id="@+id/cardStack3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:rotation="360" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayout4"
+            android:layout_width="240dp"
+            android:layout_height="320dp"
+            android:layout_marginEnd="16dp">
+            <ImageView
+                android:id="@+id/cardStack4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:rotation="360" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/cardsLayout"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:weightSum="4">
+
+        <Button
+            android:id="@+id/btnHigher"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Higher"
+            android:background="@drawable/btn_higher"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="24dp"
+            android:padding="24dp"
+            android:textStyle="bold"
+            android:textSize="32sp" />
+
+        <Button
+            android:id="@+id/btnSame"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Same"
+            android:background="@drawable/btn_same"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="24dp"
+            android:padding="24dp"
+            android:textStyle="bold"
+            android:textSize="32sp" />
+
+        <Button
+            android:id="@+id/btnLower"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Lower"
+            android:background="@drawable/btn_lower"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="24dp"
+            android:padding="24dp"
+            android:textStyle="bold"
+            android:textSize="32sp" />
+
+        <Button
+            android:id="@+id/btnHearts"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Hearts"
+            android:background="@drawable/btn_red"
+            android:textColor="@android:color/white"
+            android:padding="24dp"
+            android:textStyle="bold"
+            android:textSize="32sp"
+            android:layout_marginEnd="24dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</RelativeLayout>

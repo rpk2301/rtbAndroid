@@ -1,4 +1,4 @@
-package com.example.ridethebus
+package com.rpk2301.ridethebus
 
 import PlayerData
 import android.os.Bundle
@@ -8,6 +8,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -18,6 +21,7 @@ class RecentRidesActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var recentRidesAdapter: RecentRidesAdapter
     private val recentRidesList = mutableListOf<PlayerData>()
+    private lateinit var adView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +30,7 @@ class RecentRidesActivity : AppCompatActivity() {
         val backArrow: ImageView = findViewById(R.id.iv_back_arrow)
         val recentRidesTitle: TextView = findViewById(R.id.tv_recent_rides_title)
         recyclerView = findViewById(R.id.rv_recent_rides)
+        adView = findViewById(R.id.adView)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recentRidesAdapter = RecentRidesAdapter(recentRidesList)
@@ -40,6 +45,13 @@ class RecentRidesActivity : AppCompatActivity() {
         backArrow.setOnClickListener {
             finish()
         }
+
+        // Initialize the Mobile Ads SDK
+        MobileAds.initialize(this) {}
+
+        // Load an ad into the AdView
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
     }
 
     private fun fetchRecentRides() {

@@ -1,4 +1,4 @@
-package com.example.ridethebus
+package com.rpk2301.ridethebus
 
 import android.view.LayoutInflater
 import android.view.View

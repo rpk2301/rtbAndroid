@@ -1,4 +1,4 @@
-package com.example.ridethebus
+package com.rpk2301.ridethebus
 
 import android.os.Bundle
 import android.widget.ImageView
@@ -6,8 +6,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 class StackDetailActivity : AppCompatActivity() {
+
+    private lateinit var adView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +22,14 @@ class StackDetailActivity : AppCompatActivity() {
         val stackTitle = findViewById<TextView>(R.id.tvStackTitle)
         val cardCounts = findViewById<TextView>(R.id.tvCardCounts)
         val recyclerView = findViewById<RecyclerView>(R.id.rvStackCards)
+        adView = findViewById(R.id.adView)
+
+        // Initialize the Mobile Ads SDK
+        MobileAds.initialize(this) {}
+
+        // Load an ad into the AdView
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
 
         backArrow.setOnClickListener {
             finish() // This will finish the current activity and go back to the previous one
